@@ -8,21 +8,32 @@
 
 import UIKit
 import CoreData
+import Alamofire
+import SwiftyJSON
 
 private let reuseIdentifier = "movieCell"
 
 class HomeMovieCollectionViewController: UICollectionViewController ,UICollectionViewDelegateFlowLayout{
-   
+    var moviesJsonList:Array<MoviePojo> = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let fadeTextAnimation = CATransition()
-        fadeTextAnimation.duration = 0.5
-        fadeTextAnimation.type = kCATransitionFade
-        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
-        	navigationItem.title = "test 123"
+//        let fadeTextAnimation = CATransition()
+//        fadeTextAnimation.duration = 0.5
+//        fadeTextAnimation.type = kCATransitionFade
+//        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
+//            navigationItem.title = "test 123"
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        DispatchQueue.main.async {
+            Alamofire.request(AppConstants.BASE_URL+"movie/top_rated?api_key="+AppConstants.API_KEY).responseJSON { (response) in
+                  let jsonReponse = JSON(response.result.value!)
+                self.moviesJsonList = [jsonReponse["results"].array as! MoviePojo]
+                }
+            }
+            
+        }
         
-        
-    }
+    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -32,7 +43,8 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 5
+        return moviesJsonList.count
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -43,6 +55,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
         cell.layer.borderColor = UIColor.red.cgColor
         cell.layer.borderWidth = 7
         cell.layer.cornerRadius=15
+        
         return cell
     }
     override func viewWillLayoutSubviews() {
@@ -53,7 +66,13 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let kWhateverHeightYouWant = collectionView.bounds.size.height/2
-        return CGSize(width: (collectionView.bounds.size.width/2 - CGFloat(15)), height: CGFloat(kWhateverHeightYouWant-63))
+        return CGSize(width: (collectionView.bounds.size.width/2 - CGFloat(15)), height: CGFloat(kWhateverHeightYouWant - 63))
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movieDetailsController : MovieDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        movieDetailsController.movie = moviesJsonList[indexPath.item];
+        self.navigationController?.pushViewController(movieDetailsController, animated: true);
     }
     // MARK: UICollectionViewDelegate
     
