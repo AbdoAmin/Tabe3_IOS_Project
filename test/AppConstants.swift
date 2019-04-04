@@ -15,8 +15,7 @@ class AppConstants{
         static let POPULAR:String = "Most Popular"
         static let MY_FAVORITE:String = "My Fatorite"
         static let API_KEY:String = "e40262d3acb7a461fdaf8d03cdaef152"
-        static let BASE_URL:String = "http://api.themoviedb.org/3/"
-        
+        static let BASE_URL:String = "https://api.themoviedb.org/3/"
     }
 
 

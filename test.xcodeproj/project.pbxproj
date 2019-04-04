@@ -18,7 +18,6 @@
 
 		DC37D2D82252A03D009348DE /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37D2D72252A03D009348DE /* AppConstants.swift */; };
 		DC37D2DC2252A1EB009348DE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37D2DB2252A1EB009348DE /* Movie.swift */; };
-		DC7B0C4C2252BCDF007874A8 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7B0C4B2252BCDE007874A8 /* MovieDetailsViewController.swift */; };
 		DC7B0C4E2252C836007874A8 /* MovieTrailersTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7B0C4D2252C836007874A8 /* MovieTrailersTableCell.swift */; };
 		DCFDBD5C2254151C00049547 /* MovieDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDBD5B2254151C00049547 /* MovieDao.swift */; };
 		E8BDBA6DEAB547DD288B2820 /* Pods_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A599A047BD8BE84A4DCCA4CC /* Pods_test.framework */; };
@@ -47,7 +46,7 @@
 		DC37D2DB2252A1EB009348DE /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		DC7B0C4B2252BCDE007874A8 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		DC7B0C4D2252C836007874A8 /* MovieTrailersTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrailersTableCell.swift; sourceTree = "<group>"; };
-		DCFDBD5B2254151C00049547 /* MovieDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDao.swift; sourceTree = "<group>"; };
+		
 		DC078AD6225296DB00CE7D27 /* MainScreenTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTabBarController.swift; sourceTree = "<group>"; };
 		DC078AD82252979700CE7D27 /* NavigationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationScreen.swift; sourceTree = "<group>"; };
 		DC078ADC2252A23F00CE7D27 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = SOURCE_ROOT; };
@@ -263,7 +262,6 @@
 			files = (
 				DC0CB8F72252BEA900BF65E7 /* MovieDetailsViewController.swift in Sources */,
 				DC078AD522528F5C00CE7D27 /* SplashScreenUiViewController.swift in Sources */,
-				DC7B0C4C2252BCDF007874A8 /* MovieDetailsViewController.swift in Sources */,
 				DC05E6DF225121EB0089DF32 /* AppDelegate.swift in Sources */,
 				DC05E6F62251229F0089DF32 /* MovieCollectionViewCell.swift in Sources */,
 				DC37D2D82252A03D009348DE /* AppConstants.swift in Sources */,

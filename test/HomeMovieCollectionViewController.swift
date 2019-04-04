@@ -26,8 +26,10 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         DispatchQueue.main.async {
             Alamofire.request(AppConstants.BASE_URL+"movie/top_rated?api_key="+AppConstants.API_KEY).responseJSON { (response) in
+                
                   let jsonReponse = JSON(response.result.value!)
-                self.moviesJsonList = [jsonReponse["results"].array as! MoviePojo]
+                print(jsonReponse["results"].array?.count)
+                   //self.moviesJsonList = [jsonReponse["results"].array as! MoviePojo]
                 }
             }
             
