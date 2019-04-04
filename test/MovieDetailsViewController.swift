@@ -12,7 +12,7 @@ import SDWebImage
 
 class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     @IBOutlet var movieTitleLabel: UILabel!
-    
+
     @IBOutlet var movieImage: UIImageView!
     var movie : MoviePojo!
     var movieList:Array<String> = []
@@ -26,26 +26,26 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     }
 
     func fetchTrailersAndReviews(url: String) -> Array<String> {
-       
+
         Alamofire.request(url).responseJSON { (response) in
-           
-            
+
+
         }
         return movieList
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
+
         return movie.trailers.count
 
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath)
         // cell.textLabel?.text = String(describing: movieList[indexPath.row])
         cell.textLabel?.text = String(describing: movie.trailers[indexPath.row])
         return cell
     }
-  
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //     let detailsView : DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsViewController
         //let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movieList[indexPath.row])")

@@ -10,12 +10,15 @@ import UIKit
 
 class SplashScreenUiViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "mainScreen") as! HomeMovieCollectionViewController
-        self.present(nextViewController, animated:true, completion:nil)
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {timer in
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "mainScreen") as! NavigationScreen
+            nextViewController.modalTransitionStyle = .flipHorizontal
+            self.present(nextViewController, animated:true, completion:nil)
+        })
+        
     }
-
-
 }
