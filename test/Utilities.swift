@@ -46,68 +46,47 @@ class Utilities {
         return movies
     }
     
-//    static public func getTrailerList(fromJson json:JSON)->[Trailer]{
-//        var trailers:[Trailer]=[]
-//        for (_,movie):(String, JSON) in json {
-//            let temp:Trailer=Trailer()
-//            for (key,value):(String, JSON) in movie {
-//                switch key{
-//                case "id":
-//                    temp.id=value.int;
-//                    break
-//                case "title":
-//                    temp.title=value.string;
-//                    break
-//                case "image":
-//                    temp.image=value.string;
-//                    break
-//                case "rating":
-//                    temp.rating=value.float;
-//                    break
-//                case "releaseYear":
-//                    temp.releaseYear=value.string;
-//                    break
-//                case "genres":
-//                    temp.genres=value.arrayObject as? Array<String>;
-//                    break
-//                default:
-//                    break
-//                }
-//            }
-//            movies.append(temp)
-//        }
-//        return movies
-//    }
-//    static public func getReviewList(fromJson json:JSON)->[Review]{
-//        var reviews:[Review]=[]
-//        for (_,review):(String, JSON) in json {
-//            let temp:Review=Review()
-//            for (key,value):(String, JSON) in movie {
-//                switch key{
-//                case "id":
-//                    temp.id=value.int;
-//                    break
-//                case "title":
-//                    temp.title=value.string;
-//                    break
-//                case "image":
-//                    temp.image=value.string;
-//                    break
-//                case "rating":
-//                    temp.rating=value.float;
-//                    break
-//                case "releaseYear":
-//                    temp.releaseYear=value.string;
-//                    break
-//                case "genres":
-//                    temp.genres=value.arrayObject as? Array<String>;
-//                    break
-//                default:
-//                    break
-//                }
-//            }
-//            movies.append(temp)
-//        }
-//        return movies
-//    }
+    static public func getTrailerList(fromJson json:JSON)->[Trailer]{
+        var trailers:[Trailer]=[]
+        for (_,trailer):(String, JSON) in json {
+            let temp:Trailer=Trailer()
+            for (key,value):(String, JSON) in trailer {
+                switch key{
+                case "name":
+                    temp.name=value.string;
+                    break
+                case "key":
+                    temp.key=value.string;
+                    break
+                case "site":
+                    temp.site=value.string;
+                    break
+                default:
+                    break
+                }
+            }
+            trailers.append(temp)
+        }
+        return trailers
+    }
+    static public func getReviewList(fromJson json:JSON)->[Review]{
+        var reviews:[Review]=[]
+        for (_,review):(String, JSON) in json {
+            let temp:Review=Review()
+            for (key,value):(String, JSON) in review {
+                switch key{
+                case "author":
+                    temp.author=value.string;
+                    break
+                case "content":
+                    temp.content=value.string;
+                    break
+                default:
+                    break
+                }
+            }
+            reviews.append(temp)
+        }
+        return reviews
+    }
 }

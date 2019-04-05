@@ -77,6 +77,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieDetailsController : MovieDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsController.movie = moviesJsonList[indexPath.item];
+        movieDetailsController.modalTransitionStyle = .crossDissolve
         self.navigationController?.pushViewController(movieDetailsController, animated: true);
     }
     // MARK: UICollectionViewDelegate
@@ -89,15 +90,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
      */
     
     
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MovieDetails") as! MovieDetailsViewController
-        nextViewController.modalTransitionStyle = .flipHorizontal
-        self.navigationController?.pushViewController(nextViewController, animated: true)
-//        self.present(nextViewController, animated:true, completion:nil)
-     return true
-     }
+    
     
     
     /*
