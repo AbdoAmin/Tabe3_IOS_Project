@@ -11,7 +11,8 @@ import Foundation
 class Movie:Codable{
     var id : Int?
     var title : String?
-    var poster_path : String?
+    var overview : String?
+    var image : String?
     var rating : Float?
     var releaseYear : String?
     var genres : Array<String>?
