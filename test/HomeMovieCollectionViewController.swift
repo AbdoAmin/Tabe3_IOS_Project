@@ -14,7 +14,7 @@ import SwiftyJSON
 private let reuseIdentifier = "movieCell"
 
 class HomeMovieCollectionViewController: UICollectionViewController ,UICollectionViewDelegateFlowLayout{
-    var moviesJsonList:Array<MoviePojo> = []
+    var moviesJsonList:Array<Movie> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +26,14 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         DispatchQueue.main.async {
             Alamofire.request(AppConstants.BASE_URL+"movie/top_rated?api_key="+AppConstants.API_KEY).responseJSON { (response) in
-                
-                  let jsonReponse = JSON(response.result.value!)
-                print(jsonReponse["results"].array?.count)
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    self.moviesJsonList=Utilities.getMovieList(fromJson: json["results"]);
+                    print(self.moviesJsonList[0].title!)
+                case .failure(let error):
+                    print(error)
+                }
                    //self.moviesJsonList = [jsonReponse["results"].array as! MoviePojo]
                 }
             }
