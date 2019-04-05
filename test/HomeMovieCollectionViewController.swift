@@ -23,7 +23,6 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
 //        fadeTextAnimation.type = kCATransitionFade
 //        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
 //            navigationItem.title = "test 123"
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         DispatchQueue.main.async {
             Alamofire.request(AppConstants.BASE_URL+"movie/top_rated?api_key="+AppConstants.API_KEY).responseJSON { (response) in
                 switch response.result {
@@ -31,6 +30,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
                     let json = JSON(value)
                     self.moviesJsonList=Utilities.getMovieList(fromJson: json["results"]);
                     print(self.moviesJsonList[0].title!)
+                    self.collectionView?.reloadData()
                 case .failure(let error):
                     print(error)
                 }
@@ -56,11 +56,9 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCollectionViewCell
-        
-        cell.image.image=UIImage(named:"logo.png")
-        //        cell.imageView.downloaded(from: self.movieList[indexPath.row].overview!, returnedDataProtocol:self)
-        cell.layer.borderColor = UIColor.red.cgColor
-        cell.layer.borderWidth = 7
+        cell.image.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/w185"+self.moviesJsonList[indexPath.row].image!), placeholderImage: UIImage(named: "logo.png"))
+//        cell.layer.borderColor = UIColor.yellow.cgColor
+//        cell.layer.borderWidth = 1
         cell.layer.cornerRadius=15
         
         return cell
