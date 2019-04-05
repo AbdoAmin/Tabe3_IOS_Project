@@ -23,13 +23,14 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
 //        fadeTextAnimation.type = kCATransitionFade
 //        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
 //            navigationItem.title = "test 123"
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         DispatchQueue.main.async {
             Alamofire.request(AppConstants.BASE_URL+"movie/top_rated?api_key="+AppConstants.API_KEY).responseJSON { (response) in
-                
+
                   let jsonReponse = JSON(response.result.value!)
-                print(jsonReponse["results"].array?.count)
-                   //self.moviesJsonList = [jsonReponse["results"].array as! MoviePojo]
+                if let resData = jsonReponse["results"].arrayObject {
+                    self.moviesJsonList = resData as! Array<MoviePojo>
+                }
+                 //  self.moviesJsonList = [jsonReponse["results"].array as! MoviePojo]
                 }
             }
             
