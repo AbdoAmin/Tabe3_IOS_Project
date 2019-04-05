@@ -23,7 +23,7 @@ class Utilities {
                     temp.title=value.string;
                     break
                 case "image":
-                    temp.image=value.string;
+                    temp.poster_path=value.string;
                     break
                 case "rating":
                     temp.rating=value.float;

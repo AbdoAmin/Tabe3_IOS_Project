@@ -11,8 +11,10 @@ import Alamofire
 import SDWebImage
 
 class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
+    var movieDao: MovieDao!
     @IBOutlet var movieTitleLabel: UILabel!
 
+  
     @IBOutlet var movieImage: UIImageView!
     var movie : Movie!
     var movieList:Array<String> = []
@@ -53,6 +55,9 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
         if(UIApplication.shared.canOpenURL(youtubeURL as! URL)){
             UIApplication.shared.openURL(youtubeURL as! URL)
         }
+    }
+    @IBAction func addToDatabaseBtn(_ sender: Any) {
+        movieDao.saveMovie(movie: movie)
     }
     /*
     // MARK: - Navigation
