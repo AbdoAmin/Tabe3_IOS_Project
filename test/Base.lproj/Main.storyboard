@@ -68,9 +68,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="   Chopper" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcB-a9-dsR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="   Chopper" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcB-a9-dsR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.9534549605714453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.97633171278763919" green="1" blue="0.91817554916935518" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -107,9 +106,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2G-wM-VxU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2G-wM-VxU">
                                 <rect key="frame" x="0.0" y="72" width="375" height="248"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwN-5m-xdm">
                                 <rect key="frame" x="81" y="617" width="213" height="30"/>
@@ -119,8 +117,20 @@
                                     <action selector="addToDatabaseBtn:" destination="Mb9-W7-nkh" eventType="touchUpInside" id="JgE-41-hZH"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7c-Mc-5LY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Movie" id="Djh-5w-THS"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PcB-a9-dsR" firstAttribute="width" secondItem="0IG-HI-lPx" secondAttribute="width" id="LOA-fS-PCu"/>
+                            <constraint firstItem="PcB-a9-dsR" firstAttribute="top" secondItem="x7c-Mc-5LY" secondAttribute="bottom" id="Tkx-rS-fno"/>
+                            <constraint firstItem="d2G-wM-VxU" firstAttribute="top" secondItem="PcB-a9-dsR" secondAttribute="bottom" id="W1u-Hy-Pqm"/>
+                            <constraint firstItem="PcB-a9-dsR" firstAttribute="height" secondItem="0IG-HI-lPx" secondAttribute="height" multiplier="1:8" id="Yyd-6Y-JpU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oqC-To-3Ce"/>
                     </view>
                     <connections>
@@ -139,8 +149,8 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Ayq-Mo-pua">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mfa-TW-2Q6">
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.5" id="Mfa-TW-2Q6">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -193,7 +203,7 @@
                                 <rect key="frame" x="93.5" y="177" width="187.5" height="333.5"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="c5y-aL-ujA" firstAttribute="width" secondItem="ICY-eA-6Lo" secondAttribute="width" multiplier="1:2" id="55p-QE-Vjn"/>
                             <constraint firstItem="c5y-aL-ujA" firstAttribute="centerX" secondItem="s1W-i8-ac9" secondAttribute="centerX" id="Ufk-3g-ozk"/>

@@ -78,6 +78,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
         let movieDetailsController : MovieDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsController.modalTransitionStyle = .flipHorizontal
         movieDetailsController.movie = moviesJsonList[indexPath.item];
+        movieDetailsController.modalTransitionStyle = .crossDissolve
         self.navigationController?.pushViewController(movieDetailsController, animated: true);
     }
     // MARK: UICollectionViewDelegate
@@ -88,9 +89,6 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
      return true
      }
      */
-
-
- 
 
     /*
      // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
