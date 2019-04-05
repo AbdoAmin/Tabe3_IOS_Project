@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MoviePojo {
+class Movie:Codable{
     var id : Int?
     var title : String?
     var poster_path : String?

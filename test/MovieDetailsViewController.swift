@@ -14,7 +14,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     @IBOutlet var movieTitleLabel: UILabel!
 
     @IBOutlet var movieImage: UIImageView!
-    var movie : MoviePojo!
+    var movie : Movie!
     var movieList:Array<String> = []
     override func viewDidLoad() {
         super.viewDidLoad()
