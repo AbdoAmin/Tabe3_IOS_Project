@@ -11,7 +11,7 @@ import Alamofire
 import SDWebImage
 
 class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
-    var movieDao: MovieDao!
+    var movieDao: MovieDao = MovieDao()
     @IBOutlet var movieTitleLabel: UILabel!
 
   

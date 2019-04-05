@@ -63,7 +63,7 @@
         <!--Movie Details View Controller-->
         <scene sceneID="nYC-Ln-RBP">
             <objects>
-                <viewController storyboardIdentifier="MovieDetails" id="Mb9-W7-nkh" customClass="MovieDetailsViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailsViewController" id="Mb9-W7-nkh" customClass="MovieDetailsViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0IG-HI-lPx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
