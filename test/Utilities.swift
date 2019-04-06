@@ -35,7 +35,10 @@ class Utilities {
                     temp.releaseYear=value.string;
                     break
                 case "genre_ids":
-                    temp.genres=value.arrayObject as? Array<String>;
+                   // temp.genres=value.arrayObject as? Array<String>;
+                    break
+                case "popularity":
+                    temp.popularity=value.float;
                     break
                 default:
                     break

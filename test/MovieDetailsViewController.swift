@@ -23,7 +23,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
         var trailerUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id) + "/videos?api_key=" + AppConstants.API_KEY
         var reviewUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id) + "/videos?api_key=" + AppConstants.API_KEY
 
-        movie.trailers = fetchTrailersAndReviews(url: trailerUrl)
+       // movie.trailers = fetchTrailersAndReviews(url: trailerUrl)
         // Do any additional setup after loading the view.
     }
 
@@ -37,27 +37,28 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return movie.trailers.count
+        return 1
 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath)
         // cell.textLabel?.text = String(describing: movieList[indexPath.row])
-        cell.textLabel?.text = String(describing: movie.trailers[indexPath.row])
+       // cell.textLabel?.text = String(describing: movie.trailers[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //     let detailsView : DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsViewController
         //let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movieList[indexPath.row])")
-        let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movie.trailers[indexPath.row])")
-        if(UIApplication.shared.canOpenURL(youtubeURL as! URL)){
-            UIApplication.shared.openURL(youtubeURL as! URL)
-        }
+//        let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movie.trailers[indexPath.row])")
+//        if(UIApplication.shared.canOpenURL(youtubeURL as! URL)){
+//            UIApplication.shared.openURL(youtubeURL as! URL)
+//        }
     }
     @IBAction func addToDatabaseBtn(_ sender: Any) {
         movieDao.saveMovie(movie: movie)
+        movieDao.fetchMovie(id: movie.id!)
     }
     /*
     // MARK: - Navigation

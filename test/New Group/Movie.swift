@@ -15,8 +15,7 @@ class Movie:Codable{
     var image : String?
     var rating : Float?
     var releaseYear : String?
-    var genres : Array<String>?
-    var popularity: String?
-    var trailers: Array<String>  = []
+    var popularity: Float?
+//    var trailers: Array<String>  = []
 
 }
