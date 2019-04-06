@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Movie:Codable{
+class Movie{
     var id : Int?
     var title : String?
     var overview : String?
@@ -16,6 +16,7 @@ class Movie:Codable{
     var rating : Float?
     var releaseYear : String?
     var popularity: Float?
-//    var trailers: Array<String>  = []
+    var trailers: Array<Trailer>?
+    var reviews: Array<Review>?
 
 }

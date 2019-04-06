@@ -9,31 +9,55 @@
 import UIKit
 import Alamofire
 import SDWebImage
+import SwiftyJSON
 
 class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     var movieDao: MovieDao = MovieDao()
+    @IBOutlet weak var reviewLable: UILabel!
     @IBOutlet var movieTitleLabel: UILabel!
-
-  
+    @IBOutlet weak var trailerTable: UITableView!
     @IBOutlet var movieImage: UIImageView!
+
     var movie : Movie!
     var movieList:Array<String> = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        var trailerUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id) + "/videos?api_key=" + AppConstants.API_KEY
-        var reviewUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id) + "/videos?api_key=" + AppConstants.API_KEY
-
-       // movie.trailers = fetchTrailersAndReviews(url: trailerUrl)
+        movieTitleLabel.text=movie.title!
+        movieImage.sd_setImage(with: URL(string: AppConstants.IMAGE_URL+self.movie.image!), placeholderImage: UIImage(named: "logo.png"))
+        let trailerUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id!) + "/videos?api_key=" + AppConstants.API_KEY
+        let reviewUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id!) + "/reviews?api_key=" + AppConstants.API_KEY
+       fetchTrailersAndReviews(trailerUrl: trailerUrl,reviewUrl:reviewUrl)
         // Do any additional setup after loading the view.
     }
 
-    func fetchTrailersAndReviews(url: String) -> Array<String> {
+    func fetchTrailersAndReviews(trailerUrl tUrl: String,reviewUrl rUrl: String)  {
 
-        Alamofire.request(url).responseJSON { (response) in
-
-
+        DispatchQueue.main.async {
+            Alamofire.request(tUrl).responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    self.movie.trailers = Utilities.getTrailerList(fromJson: json["results"]);
+                    self.trailerTable.reloadData()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            Alamofire.request(rUrl).responseJSON { (response) in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    self.movie.reviews = Utilities.getReviewList(fromJson: json["results"]);
+                    for review in self.movie.reviews!{
+                        self.reviewLable.text?.append(review.author!+"\n")
+                        self.reviewLable.text?.append(review.content!+"\n")
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
-        return movieList
+
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

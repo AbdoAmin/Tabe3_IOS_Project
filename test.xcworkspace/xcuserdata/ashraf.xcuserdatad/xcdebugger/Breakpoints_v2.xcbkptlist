@@ -6,47 +6,113 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test/MovieDetailsViewController.swift"
+            timestampString = "576200396.593562"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "fetchTrailersAndReviews(trailerUrl:reviewUrl:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #1 () -&gt; () in test.MovieDetailsViewController.fetchTrailersAndReviews(trailerUrl: Swift.String, reviewUrl: Swift.String) -&gt; ()"
+                  moduleName = "test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashraf/Desktop/test/test/MovieDetailsViewController.swift"
+                  timestampString = "576198657.421335"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "3409">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #2 : @autoclosure () throws -&gt; Swift.String in closure #2 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #1 () -&gt; () in test.MovieDetailsViewController.fetchTrailersAndReviews(trailerUrl: Swift.String, reviewUrl: Swift.String) -&gt; ()"
+                  moduleName = "test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashraf/Desktop/test/test/MovieDetailsViewController.swift"
+                  timestampString = "576198657.431649"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test/MovieDetailsViewController.swift"
+            timestampString = "576200396.599012"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "test/HomeMovieCollectionViewController.swift"
             timestampString = "576248492.177353"
+            filePath = "test/MovieDetailsViewController.swift"
+            timestampString = "576200396.599894"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in test.HomeMovieCollectionViewController.viewDidLoad() -&gt; ()"
+                  symbolName = "test.MovieDetailsViewController.tableView(__ObjC.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __ObjC.UITableViewCell"
                   moduleName = "test"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ashraf/Desktop/GitHub/Tabe3_IOS_Project/test/HomeMovieCollectionViewController.swift"
-                  timestampString = "576085683.834751"
+                  urlString = "file:///Users/ashraf/Desktop/test/test/MovieDetailsViewController.swift"
+                  timestampString = "576198657.475491"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "414">
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "339">
                </Location>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #1 () -&gt; () in test.HomeMovieCollectionViewController.viewDidLoad() -&gt; ()"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.String in test.MovieDetailsViewController.tableView(__ObjC.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __ObjC.UITableViewCell"
                   moduleName = "test"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ashraf/Desktop/GitHub/Tabe3_IOS_Project/test/HomeMovieCollectionViewController.swift"
-                  timestampString = "576085683.847434"
+                  urlString = "file:///Users/ashraf/Desktop/test/test/MovieDetailsViewController.swift"
+                  timestampString = "576198657.484899"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "437">
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "4">
                </Location>
             </Locations>
          </BreakpointContent>
