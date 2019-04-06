@@ -56,7 +56,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCollectionViewCell
-        cell.image.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/w185"+self.moviesJsonList[indexPath.row].image!), placeholderImage: UIImage(named: "logo.png"))
+        cell.image.sd_setImage(with: URL(string: AppConstants.IMAGE_URL+self.moviesJsonList[indexPath.row].image!), placeholderImage: UIImage(named: "logo.png"))
 //        cell.layer.borderColor = UIColor.yellow.cgColor
 //        cell.layer.borderWidth = 1
         cell.layer.cornerRadius=15
