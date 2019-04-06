@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
+  - Cosmos (18.0.1)
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
@@ -7,20 +8,23 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.0)
+  - Cosmos (~> 18.0)
   - SDWebImage (~> 4.0)
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Cosmos
     - SDWebImage
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Cosmos: 7dfaa3f52584ca5f94ab74b5c2e264019cc9f7f5
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 112d493a960a9807e142c0a78fb791b67e16f994
+PODFILE CHECKSUM: 5aa134d35d757355d86ccf18ff538cfc788d6399
 
 COCOAPODS: 1.6.1

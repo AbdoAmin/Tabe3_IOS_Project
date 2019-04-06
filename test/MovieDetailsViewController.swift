@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SDWebImage
 import SwiftyJSON
+import Cosmos
 
 class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     var movieDao: MovieDao = MovieDao()
@@ -17,14 +18,21 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     @IBOutlet var movieTitleLabel: UILabel!
     @IBOutlet weak var trailerTable: UITableView!
     @IBOutlet var movieImage: UIImageView!
-
+    @IBOutlet weak var movieOverviewLAble: UILabel!
+    
+    @IBOutlet weak var movieRate: CosmosView!
+    @IBOutlet weak var scrollView: UIScrollView!
     var movie : Movie!
     var movieList:Array<String> = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        movieRate.settings.fillMode = .precise
+
+        movieRate.rating=Double(movie.rating!)
         trailerTable.delegate=self
         trailerTable.dataSource=self
         movieTitleLabel.text=movie.title!
+        movieOverviewLAble.text=movie.overview!
         movieImage.sd_setImage(with: URL(string: AppConstants.IMAGE_URL+self.movie.image!), placeholderImage: UIImage(named: "logo.png"))
         let trailerUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id!) + "/videos?api_key=" + AppConstants.API_KEY
         let reviewUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id!) + "/reviews?api_key=" + AppConstants.API_KEY
