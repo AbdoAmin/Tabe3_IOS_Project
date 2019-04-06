@@ -22,6 +22,8 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     var movieList:Array<String> = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        trailerTable.delegate=self
+        trailerTable.dataSource=self
         movieTitleLabel.text=movie.title!
         movieImage.sd_setImage(with: URL(string: AppConstants.IMAGE_URL+self.movie.image!), placeholderImage: UIImage(named: "logo.png"))
         let trailerUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id!) + "/videos?api_key=" + AppConstants.API_KEY
@@ -61,24 +63,24 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 1
+        return movie.trailers?.count ?? 0
 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath)
-        // cell.textLabel?.text = String(describing: movieList[indexPath.row])
-       // cell.textLabel?.text = String(describing: movie.trailers[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! MovieTrailersTableCell
+//         cell.textLabel?.text = String(describing: movieList[indexPath.row])
+        cell.trailerNameLabel?.text = movie.trailers?[indexPath.row].name!
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //     let detailsView : DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsViewController
-        //let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movieList[indexPath.row])")
-//        let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movie.trailers[indexPath.row])")
-//        if(UIApplication.shared.canOpenURL(youtubeURL as! URL)){
-//            UIApplication.shared.openURL(youtubeURL as! URL)
-//        }
+//             let detailsView : DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsViewController
+//        let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movieList[indexPath.row])")
+        let youtubeURL = URL(string:"https://www.youtube.com/watch?v="+(movie.trailers?[indexPath.row].key!)!)
+        if(UIApplication.shared.canOpenURL(youtubeURL!)){
+            UIApplication.shared.openURL(youtubeURL!)
+        }
     }
     @IBAction func addToDatabaseBtn(_ sender: Any) {
         movieDao.saveMovie(movie: movie)
