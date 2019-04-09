@@ -11,13 +11,14 @@ import Alamofire
 import SDWebImage
 import SwiftyJSON
 import Cosmos
-
+import DOButton
 class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     var movieDao: MovieDao = MovieDao()
     @IBOutlet weak var reviewLable: UILabel!
     @IBOutlet var movieTitleLabel: UILabel!
     @IBOutlet weak var trailerTable: UITableView!
     @IBOutlet var movieImage: UIImageView!
+    @IBOutlet weak var favoriteBtn: DOButton!
     @IBOutlet weak var movieOverviewLAble: UILabel!
     
     @IBOutlet weak var movieRate: CosmosView!
@@ -26,8 +27,18 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     var movieList:Array<String> = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        favoriteBtn.imageColorOff = UIColor.brown
+        favoriteBtn.imageColorOn = UIColor.red
+        favoriteBtn.circleColor = UIColor.green
+        favoriteBtn.lineColor = UIColor.blue
+        favoriteBtn.duration = 3.0
+        
+//        favoriteBtn.addTarget(self, action: #selector(self.tapped(_:)), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(favoriteBtn)
+        // default: 1.0
         movieRate.settings.fillMode = .precise
-
+        
         movieRate.rating=Double(movie.rating!)
         trailerTable.delegate=self
         trailerTable.dataSource=self
@@ -39,7 +50,9 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
        fetchTrailersAndReviews(trailerUrl: trailerUrl,reviewUrl:reviewUrl)
         // Do any additional setup after loading the view.
     }
-
+    func tapped(sender: DOButton) {
+       
+    }
     func fetchTrailersAndReviews(trailerUrl tUrl: String,reviewUrl rUrl: String)  {
 
         DispatchQueue.main.async {
@@ -49,6 +62,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
                     let json = JSON(value)
                     self.movie.trailers = Utilities.getTrailerList(fromJson: json["results"]);
                     self.trailerTable.reloadData()
+                    
                 case .failure(let error):
                     print(error)
                 }
@@ -79,6 +93,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! MovieTrailersTableCell
 //         cell.textLabel?.text = String(describing: movieList[indexPath.row])
         cell.trailerNameLabel?.text = movie.trailers?[indexPath.row].name!
+        cell.trailerImage.image = UIImage(named:"logo.png")
         return cell
     }
 
@@ -91,8 +106,15 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
         }
     }
     @IBAction func addToDatabaseBtn(_ sender: Any) {
+//        if (sender as AnyObject).isSelected {
+//            // deselect
+//            (sender as AnyObject).deselect()
+//        } else {
+//            // select with animation
+//            (sender as AnyObject).select()
+//        }
         movieDao.saveMovie(movie: movie)
-        movieDao.fetchMovie(id: movie.id!)
+      movieDao.fetchMovies()
     }
     /*
     // MARK: - Navigation

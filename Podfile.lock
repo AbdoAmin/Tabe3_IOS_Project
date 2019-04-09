@@ -1,6 +1,8 @@
 PODS:
   - Alamofire (4.0.1)
   - Cosmos (18.0.1)
+  - DOButton (1.2.0)
+  - Dropdowns (2.0.0)
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
@@ -9,6 +11,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.0.0)
   - Cosmos (~> 18.0)
+  - DOButton
+  - Dropdowns
   - SDWebImage (~> 4.0)
   - SwiftyJSON (~> 4.0)
 
@@ -16,15 +20,19 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Cosmos
+    - DOButton
+    - Dropdowns
     - SDWebImage
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Cosmos: 7dfaa3f52584ca5f94ab74b5c2e264019cc9f7f5
+  DOButton: efc441446dfd53fd5fc68ae4408d17d29c632607
+  Dropdowns: 9dd32d9ac9cc59e56ae093b588d35477abde32d2
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 5aa134d35d757355d86ccf18ff538cfc788d6399
+PODFILE CHECKSUM: 81173ef1e6decfa814f8cbd2e69bfbc88a0ff5cf
 
 COCOAPODS: 1.6.1
