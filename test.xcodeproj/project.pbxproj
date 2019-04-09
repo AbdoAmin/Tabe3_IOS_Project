@@ -107,6 +107,7 @@
 		DC05E6DD225121EB0089DF32 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				DC502121225BA7C600946C6D /* popular */,
 				DC078ADC2252A23F00CE7D27 /* logo.png */,
 				DCFDBD5A225414F600049547 /* dao */,
 				DC37D2DD2252A204009348DE /* Pojos */,
@@ -138,6 +139,13 @@
 			);
 			name = Pojos;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		DC502121225BA7C600946C6D /* popular */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = popular;
 			sourceTree = "<group>";
 		};
 		DCFDBD5A225414F600049547 /* dao */ = {
@@ -246,6 +254,8 @@
 				"${PODS_ROOT}/Target Support Files/Pods-test/Pods-test-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/DOButton/DOButton.framework",
+				"${BUILT_PRODUCTS_DIR}/Dropdowns/Dropdowns.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -253,6 +263,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DOButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dropdowns.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);

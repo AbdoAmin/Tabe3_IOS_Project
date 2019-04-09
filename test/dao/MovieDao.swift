@@ -14,11 +14,15 @@ class MovieDao {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
 
         let managedContext = appDelegate.managedObjectContext;
-
+        if(isMovieExists(movieTitle: movie.title!, appDelegate: appDelegate)){
         let entity = NSEntityDescription.entity(forEntityName: "MovieEntity", in: managedContext);
-        //let movie = NSManagedObject(entity: entity!, insertInto: managedContext);
+        //let trailerEntity = NSEntityDescription.entity(forEntityName: "TrailerEntity", in: managedContext);
+        let  movieTrailersToString = Utilities.parseTrailerToString(fromList: movie.trailers!)
+        let  movieReviewsToString = Utilities.parseReviewToString(fromList: movie.reviews!)
+     
+//        let storedtrailer = NSManagedObject(entity: trailerEntity!, insertInto: managedContext);
         let storedMovie = NSManagedObject(entity: entity!, insertInto: managedContext);
-        
+    
         storedMovie.setValue(movie.id, forKey:"id");
         storedMovie.setValue(movie.title, forKey:"title");
         storedMovie.setValue(movie.popularity, forKey:"popularity");
@@ -26,20 +30,25 @@ class MovieDao {
         storedMovie.setValue(movie.overview, forKey:"overview");
         storedMovie.setValue(movie.releaseYear , forKey:"releaseYear");
         storedMovie.setValue(movie.image, forKey:"image");
+        storedMovie.setValue(movieTrailersToString, forKey: "trailers")
+        storedMovie.setValue(movieReviewsToString, forKey: "reviews")
+
         do {
         try managedContext.save()
         } catch {
             print("Failed saving")
-        }
+            }}
     }
-    func fetchMovie(id : Int)-> Array<Movie>{
+    func fetchMovies()-> Array<Movie>{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         let managedContext = appDelegate.managedObjectContext;
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieEntity")
+        request.relationshipKeyPathsForPrefetching = ["trailers"]
         //request.predicate = NSPredicate(format: "age = %@", "12")
-        request.returnsObjectsAsFaults = false
+    request.returnsObjectsAsFaults = false
         do {
             let result = try managedContext.fetch(request)
+            
             for data in result as! [NSManagedObject] {
                 let movie = Movie()
                 movie.id = data.value(forKey: "id") as! Int
@@ -49,6 +58,8 @@ class MovieDao {
                 movie.releaseYear = data.value(forKey: "releaseYear") as! String
                 movie.rating = data.value(forKey: "rate") as! Float
                 movie.popularity = data.value(forKey: "popularity") as! Float
+                movie.trailers = Utilities.parseTrailerToList(fromString: data.value(forKey: "trailers") as! String)
+                movie.reviews = Utilities.parseReviewToList(fromString: data.value(forKey: "reviews") as! String)
                 fetchedMovies.append(movie)
             }
             
@@ -91,6 +102,20 @@ class MovieDao {
             print(error)
         }
     }
-    
+    func isMovieExists(movieTitle: String,appDelegate :AppDelegate) -> Bool {
+        var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
+        fetchRequest.predicate = NSPredicate(format: "title= %d", movieTitle)
+        
+        var results: [NSManagedObject] = []
+        
+        do {
+            results = try appDelegate.managedObjectContext.fetch(fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        
+        return results.count > 0
+    }
 
 }

@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
        
         let modelURL = Bundle.main.url(forResource: "test", withExtension: "momd")!
+        print(modelURL)
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.appendingPathComponent("MovieEntity.sqlite")
+        print(url)
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
@@ -71,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "net.japko.EmptyCoreDataSwiftProject" in the application's documents Application Support directory.
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print(urls)
         return urls[urls.count-1] as NSURL
     }()
 //

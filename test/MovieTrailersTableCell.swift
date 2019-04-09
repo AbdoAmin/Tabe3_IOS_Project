@@ -10,6 +10,7 @@ import UIKit
 
 class MovieTrailersTableCell: UITableViewCell {
 
+    @IBOutlet var trailerImage: UIImageView!
     
     @IBOutlet var trailerNameLabel: UILabel!
     
