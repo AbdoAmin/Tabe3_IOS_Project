@@ -12,14 +12,14 @@ class MainScreenTabBarController: UITabBarController {
     var mode:Bool=true
     var storyBoard:UIStoryboard!
     var mainScreen:HomeMovieCollectionViewController!
-    
+
     @IBAction func swithBtn(_ sender: Any) {
         mode = !mode
         (self.selectedViewController as? HomeMovieCollectionViewController)?.refreshTo(mode: mode)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
 //          storyBoard = UIStoryboard(name: "Main", bundle:nil)
 //          mainScreen = storyBoard.instantiateViewController(withIdentifier: "mainMovieCollectionView") as! HomeMovieCollectionViewController
         // Do any additional setup after loading the view.
@@ -34,6 +34,6 @@ class MainScreenTabBarController: UITabBarController {
 
         }
     }
-    
-    
+
+
 }

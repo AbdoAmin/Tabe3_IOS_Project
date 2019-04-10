@@ -18,7 +18,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
     var moviesJsonList:Array<Movie> = []
     let color = UIColor(red: 22/255, green: 160/255, blue: 33/255, alpha: 1)
     static var firstVisit=true
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -28,7 +28,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
         my_switch.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
         let switch_display = UIBarButtonItem(customView: my_switch)
         navigationItem.rightBarButtonItem = switch_display
-        
+
         //        navigationController?.navigationBar.isTranslucent = false
         //        navigationController?.navigationBar.barTintColor = color
 //        let items = ["World", "Sports", "Culture", "Business", "Travel"]
@@ -40,7 +40,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
 //
 //        navigationItem.titleView = titleView
 //        Config.List.DefaultCell.Text.color = UIColor.red
-        
+
         //        let fadeTextAnimation = CATransition()
         //        fadeTextAnimation.duration = 0.5
         //        fadeTextAnimation.type = kCATransitionFade
@@ -58,7 +58,7 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
             if HomeMovieCollectionViewController.firstVisit{
                 HomeMovieCollectionViewController.firstVisit=false
             refreshTo(mode: true)
-                
+
             }
         }
     }
@@ -75,39 +75,39 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
             print( "The switch is now false!" )
         }
     }
-    
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    
+
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return moviesJsonList.count
-        
+
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCollectionViewCell
         cell.image.sd_setImage(with: URL(string: AppConstants.IMAGE_URL+self.moviesJsonList[indexPath.row].image!), placeholderImage: UIImage(named: "logo.png"))
         //        cell.layer.borderColor = UIColor.yellow.cgColor
         //        cell.layer.borderWidth = 1
         cell.layer.cornerRadius=15
-        
+
         return cell
     }
     override func viewWillLayoutSubviews() {
         //        collectionView?.collectionViewLayout.invalidateLayout()
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let kWhateverHeightYouWant = collectionView.bounds.size.height/2
         return CGSize(width: (collectionView.bounds.size.width/2 - CGFloat(15)), height: CGFloat(kWhateverHeightYouWant - 63))
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieDetailsController : MovieDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsController.modalTransitionStyle = .flipHorizontal
@@ -116,29 +116,29 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
         self.navigationController?.pushViewController(movieDetailsController, animated: true);
     }
     // MARK: UICollectionViewDelegate
-    
+
     /*
      // Uncomment this method to specify if the specified item should be highlighted during tracking
      override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
      return true
      }
      */
-    
+
     /*
      // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
      override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
      return false
      }
-     
+
      override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
      return false
      }
-     
+
      override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
+
      }
      */
-    
+
     func refreshTo(mode:Bool){
          self.moviesJsonList.removeAll()
         if mode {
@@ -175,5 +175,5 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
         }
 
     }
-    
+
 }

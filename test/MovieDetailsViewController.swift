@@ -20,7 +20,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     @IBOutlet var movieImage: UIImageView!
     @IBOutlet weak var favoriteBtn: DOButton!
     @IBOutlet weak var movieOverviewLAble: UILabel!
-    
+
     @IBOutlet weak var movieRate: CosmosView!
     @IBOutlet weak var scrollView: UIScrollView!
     var movie : Movie!
@@ -33,12 +33,12 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
         favoriteBtn.circleColor = UIColor.green
         favoriteBtn.lineColor = UIColor.blue
         favoriteBtn.duration = 3.0
-        
+
 //        favoriteBtn.addTarget(self, action: #selector(self.tapped(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(favoriteBtn)
         // default: 1.0
         movieRate.settings.fillMode = .precise
-        
+
         movieRate.rating=Double(movie.rating!)
         trailerTable.delegate=self
         trailerTable.dataSource=self
@@ -51,7 +51,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
         // Do any additional setup after loading the view.
     }
     func tapped(sender: DOButton) {
-       
+
     }
     func fetchTrailersAndReviews(trailerUrl tUrl: String,reviewUrl rUrl: String)  {
 
@@ -62,7 +62,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
                     let json = JSON(value)
                     self.movie.trailers = Utilities.getTrailerList(fromJson: json["results"]);
                     self.trailerTable.reloadData()
-                    
+
                 case .failure(let error):
                     print(error)
                 }
