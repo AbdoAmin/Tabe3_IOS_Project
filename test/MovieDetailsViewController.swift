@@ -20,7 +20,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     @IBOutlet var movieImage: UIImageView!
     @IBOutlet weak var favoriteBtn: DOButton!
     @IBOutlet weak var movieOverviewLAble: UILabel!
-
+    
     @IBOutlet weak var movieRate: CosmosView!
     @IBOutlet weak var scrollView: UIScrollView!
     var movie : Movie!
@@ -33,23 +33,23 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
         }
         
         movieRate.settings.fillMode = .precise
-
+        
         movieRate.rating=Double(movie.rating!/2.0)
         trailerTable.delegate=self
         trailerTable.dataSource=self
         movieTitleLabel.text=movie.title!
-        movieOverviewLAble.text=movie.overview!
+        movieOverviewLAble.text="Overview:\n"+movie.overview!
         movieImage.sd_setImage(with: URL(string: AppConstants.IMAGE_URL+self.movie.image!), placeholderImage: UIImage(named: "logo.png"))
         let trailerUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id!) + "/videos?api_key=" + AppConstants.API_KEY
         let reviewUrl =  AppConstants.BASE_URL + "movie/" + String(describing: movie.id!) + "/reviews?api_key=" + AppConstants.API_KEY
-       fetchTrailersAndReviews(trailerUrl: trailerUrl,reviewUrl:reviewUrl)
+        fetchTrailersAndReviews(trailerUrl: trailerUrl,reviewUrl:reviewUrl)
         // Do any additional setup after loading the view.
     }
     func tapped(sender: DOButton) {
-
+        
     }
     func fetchTrailersAndReviews(trailerUrl tUrl: String,reviewUrl rUrl: String)  {
-
+        
         DispatchQueue.main.async {
             Alamofire.request(tUrl).responseJSON { (response) in
                 switch response.result {
@@ -57,7 +57,7 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
                     let json = JSON(value)
                     self.movie.trailers = Utilities.getTrailerList(fromJson: json["results"]);
                     self.trailerTable.reloadData()
-
+                    
                 case .failure(let error):
                     print(error)
                 }
@@ -67,34 +67,37 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
                 case .success(let value):
                     let json = JSON(value)
                     self.movie.reviews = Utilities.getReviewList(fromJson: json["results"]);
-                    for review in self.movie.reviews!{
-                        self.reviewLable.text?.append(review.author!+"\n")
-                        self.reviewLable.text?.append(review.content!+"\n")
+                    if ((self.movie.reviews?.count) ?? 0 ) > 0 {
+                        self.reviewLable.text?.append("Reviews: \n\n\n")
+                        for review in self.movie.reviews!{
+                            self.reviewLable.text?.append(review.author!+":\n\n")
+                            self.reviewLable.text?.append(review.content!+"\n")
+                        }
                     }
                 case .failure(let error):
                     print(error)
                 }
             }
         }
-
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return movie.trailers?.count ?? 0
-
+        
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! MovieTrailersTableCell
-//         cell.textLabel?.text = String(describing: movieList[indexPath.row])
+        //         cell.textLabel?.text = String(describing: movieList[indexPath.row])
         cell.trailerNameLabel?.text = movie.trailers?[indexPath.row].name!
         cell.trailerImage.image = UIImage(named:"logo.png")
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//             let detailsView : DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsViewController
-//        let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movieList[indexPath.row])")
+        //             let detailsView : DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsViewController
+        //        let youtubeURL = NSURL(string:"https://www.youtube.com/watch?v=\(movieList[indexPath.row])")
         let youtubeURL = URL(string:"https://www.youtube.com/watch?v="+(movie.trailers?[indexPath.row].key!)!)
         if(UIApplication.shared.canOpenURL(youtubeURL!)){
             UIApplication.shared.openURL(youtubeURL!)
@@ -112,13 +115,13 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
         }
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
