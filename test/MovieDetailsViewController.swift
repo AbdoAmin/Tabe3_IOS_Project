@@ -28,18 +28,13 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        favoriteBtn.imageColorOff = UIColor.brown
-        favoriteBtn.imageColorOn = UIColor.red
-        favoriteBtn.circleColor = UIColor.green
-        favoriteBtn.lineColor = UIColor.blue
-        favoriteBtn.duration = 3.0
-
-//        favoriteBtn.addTarget(self, action: #selector(self.tapped(_:)), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(favoriteBtn)
-        // default: 1.0
+        if(movieDao.isMovieExists(movieId: movie.id!)){
+            favoriteBtn.select()
+        }
+        
         movieRate.settings.fillMode = .precise
 
-        movieRate.rating=Double(movie.rating!)
+        movieRate.rating=Double(movie.rating!/2.0)
         trailerTable.delegate=self
         trailerTable.dataSource=self
         movieTitleLabel.text=movie.title!
@@ -105,16 +100,16 @@ class MovieDetailsViewController: UIViewController ,UITableViewDataSource,UITabl
             UIApplication.shared.openURL(youtubeURL!)
         }
     }
-    @IBAction func addToDatabaseBtn(_ sender: Any) {
-//        if (sender as AnyObject).isSelected {
-//            // deselect
-//            (sender as AnyObject).deselect()
-//        } else {
-//            // select with animation
-//            (sender as AnyObject).select()
-//        }
-        movieDao.saveMovie(movie: movie)
-      movieDao.fetchMovies()
+    @IBAction func addToDatabaseBtn(_ sender: DOButton) {
+        if (sender).isSelected {
+            // deselect
+            (sender).deselect()
+            movieDao.deleteData(movieId: movie.id!)
+        } else {
+            // select with animation
+            (sender).select()
+            movieDao.saveMovie(movie: movie)
+        }
     }
     /*
     // MARK: - Navigation

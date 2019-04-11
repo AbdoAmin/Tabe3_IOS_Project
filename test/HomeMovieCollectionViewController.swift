@@ -46,25 +46,23 @@ class HomeMovieCollectionViewController: UICollectionViewController ,UICollectio
         //        fadeTextAnimation.type = kCATransitionFade
         //        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
         //            navigationItem.title = "test 123"
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         if self.restorationIdentifier == "fivoriteCollectionView" {
             self.navigationController?.setNavigationBarHidden(true, animated: false)
             let dao = MovieDao()
             DispatchQueue.main.async {
-            self.moviesJsonList = dao.fetchMovies()
-            self.collectionView?.reloadData()
+                self.moviesJsonList = dao.fetchMovies()
+                self.collectionView?.reloadData()
             }
         }
         else{
             if HomeMovieCollectionViewController.firstVisit{
                 HomeMovieCollectionViewController.firstVisit=false
-            refreshTo(mode: true)
-
+                refreshTo(mode: true)
+                
             }
-        }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        if self.restorationIdentifier == "fivoriteCollectionView" {
-            self.navigationController?.setNavigationBarHidden(true, animated: false)
         }
     }
     @objc func switchToggled(_ sender: UISwitch) {

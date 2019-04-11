@@ -9,13 +9,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "test/dao/MovieDao.swift"
-            timestampString = "576540859.52528"
+            filePath = "Pods/DOButton/Source/DOButton.swift"
+            timestampString = "576674619.465569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "fetchMovies()"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
+            landmarkName = "select()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test/dao/MovieDao.swift"
+            timestampString = "576693809.500264"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "deleteData(movieId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

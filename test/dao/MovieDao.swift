@@ -11,41 +11,43 @@ import CoreData
 class MovieDao {
     var fetchedMovies : Array<Movie> = []
     func saveMovie(movie : Movie) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-
-        let managedContext = appDelegate.managedObjectContext;
-        if(isMovieExists(movieTitle: movie.title!, appDelegate: appDelegate)){
-        let entity = NSEntityDescription.entity(forEntityName: "MovieEntity", in: managedContext);
-        //let trailerEntity = NSEntityDescription.entity(forEntityName: "TrailerEntity", in: managedContext);
-        let  movieTrailersToString = Utilities.parseTrailerToString(fromList: movie.trailers!)
-        let  movieReviewsToString = Utilities.parseReviewToString(fromList: movie.reviews!)
-     
-//        let storedtrailer = NSManagedObject(entity: trailerEntity!, insertInto: managedContext);
-        let storedMovie = NSManagedObject(entity: entity!, insertInto: managedContext);
-    
-        storedMovie.setValue(movie.id, forKey:"id");
-        storedMovie.setValue(movie.title, forKey:"title");
-        storedMovie.setValue(movie.popularity, forKey:"popularity");
-        storedMovie.setValue(movie.rating, forKey:"rate");
-        storedMovie.setValue(movie.overview, forKey:"overview");
-        storedMovie.setValue(movie.releaseYear , forKey:"releaseYear");
-        storedMovie.setValue(movie.image, forKey:"image");
-        storedMovie.setValue(movieTrailersToString, forKey: "trailers")
-        storedMovie.setValue(movieReviewsToString, forKey: "reviews")
-
-        do {
-        try managedContext.save()
-        } catch {
-            print("Failed saving")
-            }}
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        
+        let managedContext = appDelegate.managedObjectContext
+        if(!isMovieExists(movieId: movie.id!)){
+            let entity = NSEntityDescription.entity(forEntityName: "MovieEntity", in: managedContext);
+            //let trailerEntity = NSEntityDescription.entity(forEntityName: "TrailerEntity", in: managedContext);
+            let  movieTrailersToString = Utilities.parseTrailerToString(fromList: movie.trailers!)
+            let  movieReviewsToString = Utilities.parseReviewToString(fromList: movie.reviews!)
+            
+            //        let storedtrailer = NSManagedObject(entity: trailerEntity!, insertInto: managedContext);
+            let storedMovie = NSManagedObject(entity: entity!, insertInto: managedContext);
+            
+            storedMovie.setValue(movie.id, forKey:"id");
+            storedMovie.setValue(movie.title, forKey:"title");
+            storedMovie.setValue(movie.popularity, forKey:"popularity");
+            storedMovie.setValue(movie.rating, forKey:"rate");
+            storedMovie.setValue(movie.overview, forKey:"overview");
+            storedMovie.setValue(movie.releaseYear , forKey:"releaseYear");
+            storedMovie.setValue(movie.image, forKey:"image");
+            storedMovie.setValue(movieTrailersToString, forKey: "trailers")
+            storedMovie.setValue(movieReviewsToString, forKey: "reviews")
+                do {
+                    try managedContext.save()
+                } catch {
+                    print("Failed saving")
+                }
+            
+            
+        }
     }
     func fetchMovies()-> Array<Movie>{
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext;
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieEntity")
         request.relationshipKeyPathsForPrefetching = ["trailers"]
         //request.predicate = NSPredicate(format: "age = %@", "12")
-    request.returnsObjectsAsFaults = false
+        request.returnsObjectsAsFaults = false
         do {
             let result = try managedContext.fetch(request)
             
@@ -72,19 +74,17 @@ class MovieDao {
     
     func deleteData(movieId :Int){
         
-        //As we know that container is set up in the AppDelegates so we need to refer that container.
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
-        //We need to create a context from this container
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = appDelegate.managedObjectContext
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieEntity")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", movieId)
+        var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
+        fetchRequest.predicate = NSPredicate(format: "id= %d", movieId)
         
         do
         {
             let test = try managedContext.fetch(fetchRequest)
-            
+            if(test.count>0){
             let objectToDelete = test[0] as! NSManagedObject
             managedContext.delete(objectToDelete)
             
@@ -95,6 +95,7 @@ class MovieDao {
             {
                 print(error)
             }
+            }
             
         }
         catch
@@ -102,9 +103,11 @@ class MovieDao {
             print(error)
         }
     }
-    func isMovieExists(movieTitle: String,appDelegate :AppDelegate) -> Bool {
+    func isMovieExists(movieId: Int) -> Bool {
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        
         var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
-        fetchRequest.predicate = NSPredicate(format: "title= %d", movieTitle)
+        fetchRequest.predicate = NSPredicate(format: "id= %d", movieId)
         
         var results: [NSManagedObject] = []
         
@@ -117,5 +120,5 @@ class MovieDao {
         
         return results.count > 0
     }
-
+    
 }

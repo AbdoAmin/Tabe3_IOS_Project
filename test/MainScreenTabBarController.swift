@@ -31,7 +31,6 @@ class MainScreenTabBarController: UITabBarController {
         }
         else{
             self.navigationController?.setNavigationBarHidden(false, animated: false)
-
         }
     }
 
