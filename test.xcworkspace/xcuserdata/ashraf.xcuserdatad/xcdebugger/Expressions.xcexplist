@@ -3,7 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "MainScreenTabBarController.viewDidLoad():MainScreenTabBarController.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in MovieDetailsViewController.fetchTrailersAndReviews(trailerUrl:reviewUrl:):MovieDetailsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in HomeMovieCollectionViewController.refreshTo(mode:pageNumber:):HomeMovieCollectionViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainScreenTabBarController.swithBtn(_:):MainScreenTabBarController.swift">
       </ContextState>
       <ContextState
          contextName = "MovieDao.saveMovie(movie:):MovieDao.swift">

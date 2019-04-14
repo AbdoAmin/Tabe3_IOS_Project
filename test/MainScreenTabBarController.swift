@@ -15,7 +15,9 @@ class MainScreenTabBarController: UITabBarController {
 
     @IBAction func swithBtn(_ sender: Any) {
         mode = !mode
-        (self.selectedViewController as? HomeMovieCollectionViewController)?.refreshTo(mode: mode)
+        (self.selectedViewController as? HomeMovieCollectionViewController)?.moviesJsonList.removeAll()
+        (self.selectedViewController as? HomeMovieCollectionViewController)?.pageNumber=0
+        (self.selectedViewController as? HomeMovieCollectionViewController)?.refreshTo(mode: mode,pageNumber:0)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

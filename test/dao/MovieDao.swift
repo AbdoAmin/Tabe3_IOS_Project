@@ -14,7 +14,9 @@ class MovieDao {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
         let managedContext = appDelegate.managedObjectContext
+        if (movie.reviews != nil) && (movie.trailers) != nil {
         if(!isMovieExists(movieId: movie.id!)){
+            
             let entity = NSEntityDescription.entity(forEntityName: "MovieEntity", in: managedContext);
             //let trailerEntity = NSEntityDescription.entity(forEntityName: "TrailerEntity", in: managedContext);
             let  movieTrailersToString = Utilities.parseTrailerToString(fromList: movie.trailers!)
@@ -39,7 +41,7 @@ class MovieDao {
                 }
             
             
-        }
+            }}
     }
     func fetchMovies()-> Array<Movie>{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
